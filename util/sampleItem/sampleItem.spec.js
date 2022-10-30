@@ -1,7 +1,7 @@
 let sampleItem = require('./index')
 
 // Testing randomness
-describe.only('.sampleItem', () => {
+describe('.sampleItem', () => {
   // Test happy path
   test('should sample a random item from an array', () => {
     let input = ['apple', 'banana', 'orange', 'pear']
