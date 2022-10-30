@@ -1,8 +1,9 @@
 let capitalize = require('./index')
 
-describe('capitalize', () => {
+// Organise related tests with a describe block. Include the name of the function being tested
+describe('.capitalize', () => {
   // Test happy path
-  test('should capitalize a single string', () => {
+  test('should capitalize a word', () => {
     // Follow basic `input` `actual` and `expected` style
     // 1. input = input parameters being passed to function being tested
     // 2. actual = actual output of function being passed input
