@@ -1,4 +1,5 @@
 let {fetchFruit, fetchFruitWithKj} = require('./index')
+let axios = require('axios')
 
 // our expected API fetch result we will test across our suites 
 const FETCH_RESULT = {
@@ -19,7 +20,7 @@ const FETCH_RESULT = {
 describe('.fetchFruit', () => {
   // full integration test using async await
   // in development this can take too long  
-  test.skip('should sample a random item from an array', async() => {
+  test.skip('should fetch nutrition information for a given fruit', async() => {
     let input = 'apple'
     let resp = await fetchFruit(input, axios)
     // axios library returns response in data property
