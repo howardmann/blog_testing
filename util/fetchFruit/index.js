@@ -1,4 +1,5 @@
 let axios = require('axios')
+let convertCalToKJ = require('../convertCalToKj')
 
 let fetchFruit = (fruit, request=axios) => {
   let api = "https://www.fruityvice.com/api/fruit/"
@@ -10,4 +11,18 @@ let fetchFruit = (fruit, request=axios) => {
     })
 }
 
-module.exports = fetchFruit
+let fetchFruitWithKj = async (fruit, request=axios) => {
+  let resp = await request.get(fruit, request)
+  let output = resp.data  
+  let calories = output.nutritions.calories
+  let kj = convertCalToKJ(calories)    
+  // creae copy of output to not mutate
+  let newOutput = JSON.parse(JSON.stringify(output))
+  newOutput['nutritions']['kilojoules'] = kj
+  return newOutput
+}
+
+module.exports = {
+  fetchFruit,
+  fetchFruitWithKj
+}
