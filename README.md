@@ -152,7 +152,7 @@ We will write validations to ensure that only numbers or number strings are bein
 
 To test validations, we will deliberately pass inputs that we expect will throw errors. The `jest` framework requires the code we are error testing be wrapped in an anonymous function inside expect `expect(() => function(input))` with the assertion library using the method `toThrow()`.
 
-Write a unit test for when a non number string input is passed to `convertToCalKj()` that an error is thrown with a message `not a number`.
+Write a unit test for when a non number string input is passed to `convertCalToKj()` that an error is thrown with a message `not a number`.
 
 ```javascript
 let convertCalToKj = require('./index')
@@ -162,7 +162,7 @@ describe('.convertCalToKj', () => {
   test('should throw error if not given a number or number string', () => {
     let input = "banana"
     // When testing to throw errors wrap our `actual` in an arrow function and call it at run-time
-    let actual = () => convertCalToKj()
+    let actual = () => convertCalToKj(input)
     let expected = "not a number"
     
     // Call the function when inside the expect assertion and use `.toThrow()` to assert an Error has been thrown
@@ -317,7 +317,7 @@ let fetchFruit = (fruit, request=axios) => {
 }
 
 let fetchFruitWithKj = async (fruit, request=axios) => {
-  let resp = await request.get(fruit, request)
+  let resp = await fetchFruit(fruit, request)
   let output = resp.data  
   let calories = output.nutritions.calories
   let kj = convertCalToKJ(calories)    
