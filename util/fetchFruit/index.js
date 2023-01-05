@@ -12,7 +12,7 @@ let fetchFruit = (fruit, request=axios) => {
 }
 
 let fetchFruitWithKj = async (fruit, request=axios) => {
-  let resp = await request.get(fruit, request)
+  let resp = await fetchFruit(fruit, request)
   let output = resp.data  
   let calories = output.nutritions.calories
   let kj = convertCalToKJ(calories)    

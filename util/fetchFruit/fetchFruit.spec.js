@@ -50,6 +50,19 @@ describe('.fetchFruit', () => {
 })
 
 describe('.fetchFruitWithKj', () => {
+  // real test without stub
+  test.skip('should integration test fetch fruit with converted kj value', async() => {
+    // Make copy of FETCH_RESULT object and add nested kj value
+    const FETCH_RESULT_KJ = JSON.parse(JSON.stringify(FETCH_RESULT))
+    FETCH_RESULT_KJ["nutritions"]["kilojoules"] = 217.568
+
+    let input = 'apple'
+    let actual = await fetchFruitWithKj(input, axios)
+    let expected = FETCH_RESULT_KJ
+
+    expect(actual).toStrictEqual(expected)
+  })
+
   // Using our stub we can test functions combined with 3rd party API requests
   test('should fake fetch a fruit object with converted kj value', async() => {
     // our fake Axios stub
